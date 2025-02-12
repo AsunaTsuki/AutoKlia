@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+      <ProjectReference Include="..\ECommons\ECommons\ECommons.csproj" />
     <Folder Include="Manager\" />
   </ItemGroup>
 </Project>
