@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Dalamud.NET.SDK/11.0.0">
+  <PropertyGroup>
+    <Version>0.0.0.2</Version>
+    <Description>AutoKlia</Description>
+    <PackageProjectUrl>https://github.com/goatcorp/AutoKlia</PackageProjectUrl>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Manager\" />
+  </ItemGroup>
+</Project>

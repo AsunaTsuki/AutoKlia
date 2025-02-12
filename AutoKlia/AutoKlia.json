@@ -1,0 +1,12 @@
+{
+  "Author": "Asuna Pahlo",
+  "Name": "AutoKlia",
+  "Punchline": "Poker payout plugin for my amazing Klia ♥",
+  "Description": "Helps handle poker payouts for the AutoKlia discord bot",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "poker",
+    "gamba",
+    "klia"
+  ]
+}
