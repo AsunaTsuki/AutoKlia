@@ -553,7 +553,7 @@ namespace AutoKlia.Windows
 
                 if (ImGui.Button("Confirm", new Vector2(120, 0)))
                 {
-                    _ = SendTabPaymentAsync(_confirmTabPlayerName, _confirmTabPlayerId, (int)_confirmTabPayAmount);
+                    _ = SendTabPaymentAsync(_confirmTabPlayerName, _confirmTabPlayerId, (int)_confirmTabPayAmount, Plugin.adminNameWorld);
                     ImGui.CloseCurrentPopup();
 
                     string message = $"Confirmed tab payment for {_confirmTabPlayerName} {_confirmTabPayAmount:N0} gil";
@@ -770,8 +770,10 @@ namespace AutoKlia.Windows
             string playerName,
             int playerId,
             int amount,
+            string adminName,
             string notes = null,
-            string dateStr = null)
+            string dateStr = null
+            )
         {
             // Build the JSON payload.
             var payload = new
@@ -780,7 +782,8 @@ namespace AutoKlia.Windows
                 player_id = playerId,
                 amount = amount,
                 notes = notes,
-                date_str = dateStr
+                date_str = dateStr,
+                adminNameWorld = Plugin.adminNameWorld,
             };
 
             var jsonPayload = JsonSerializer.Serialize(payload);
@@ -831,7 +834,8 @@ namespace AutoKlia.Windows
                     // You might send the payout amount (which your server can use to update the balance)
                     amount = payAmount,
                     // Optionally, include any other fields (e.g. a timestamp or operator ID)
-                    take_remainder = takeRemainder
+                    take_remainder = takeRemainder,
+                    adminNameWorld = Plugin.adminNameWorld,
                 };
 
                 var jsonPayload = JsonSerializer.Serialize(payload);

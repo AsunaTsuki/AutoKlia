@@ -16,6 +16,8 @@ using System.Linq;
 using ECommons.ExcelServices;
 using AutoKlia.Helpers;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using ECommons.Logging;
 
 namespace AutoKlia;
 
@@ -36,11 +38,11 @@ public sealed class Plugin : IDalamudPlugin
     private ConfigWindow ConfigWindow { get; init; }
     private MainWindow MainWindow { get; init; }
 
-    public const string EndpointURL = "https://api.klia.gamba.pro";
-    //public const string EndpointURL = "http://localhost:8092";
+    public const string EndpointURL = "https://klia.gamba.pro";
+    //public const string EndpointURL = "http://localhost:5200";
 
     public string CurrentLocation = "";
-
+    public string adminNameWorld = "";
 
 
 
@@ -93,7 +95,18 @@ public sealed class Plugin : IDalamudPlugin
     private void OnCommand(string command, string args)
     {
         // in response to the slash command, just toggle the display status of our main ui
-        ToggleMainUI();
+
+
+        if (Svc.ClientState.LocalPlayer?.IsTargetable == true)
+        {
+            adminNameWorld = Svc.ClientState.LocalPlayer.Name.ToString() + "@" + Svc.ClientState.LocalPlayer.HomeWorld.Value.Name.ToString();
+            ToggleMainUI();
+        }
+        else
+        {
+            PluginLog.Information("Player is not loaded in.");
+        }
+        
     }
     
     private void DrawUI() => WindowSystem.Draw();
@@ -107,6 +120,8 @@ public sealed class Plugin : IDalamudPlugin
             await MainWindow.RefreshBalancesAsync();
             await MainWindow.RefreshTabsAsync();
         });
+
+
         MainWindow.Toggle();
     }
 
